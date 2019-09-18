@@ -1,0 +1,36 @@
+{
+  "name": "iitg-agnigarh",
+  "version": "1.0.0",
+  "description": "makes iitg agnigarh.iitg.ac.in authentication in the background",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodmon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Varshneyabhushan/IITG-agnigarh.git"
+  },
+  "keywords": [
+    "iitg",
+    "login",
+    "proxy",
+    "agnigarh",
+    "authentication"
+  ],
+  "author": "Varshneyabhushan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Varshneyabhushan/IITG-agnigarh/issues"
+  },
+  "homepage": "https://github.com/Varshneyabhushan/IITG-agnigarh#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.1.0",
+    "node-fetch": "^2.6.0"
+  }
+}
