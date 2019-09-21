@@ -17,4 +17,11 @@ npm install
 npm start
 ```
 ## Getting more out of it
-You can start and push the process to the background so that, it runs even when the terminal is closed.
+Start and push the process to the background so that, it runs even when the terminal is closed.
+```
+npm run bg
+```
+And then, if we want to see the number of times it reconnected or to see the process id in case of killing it, run the following command to check the logs
+```
+tail -f output.log
+```
