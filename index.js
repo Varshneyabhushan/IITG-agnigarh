@@ -1,6 +1,7 @@
 const nodefetch = require("node-fetch")
 const https = require("https")
 const cheerio = require('cheerio')
+const pid = process.pid
 
 require('dotenv').config()
 
@@ -17,9 +18,9 @@ let password = process.env.PASSWORD
 let timeout = process.env.TIMEOUT
 
 if(!username || !password){
-    console.log("specify username and password in .env file")
+    logOutput("specify username and password in .env file")
 }else if(!timeout){
-    console.log("specify timeout in .env file")
+    logError("specify timeout in .env file")
 }else 
     fetch(refreshURL).then(r => r.text())
     .then(res => {
@@ -31,14 +32,21 @@ if(!username || !password){
     .then(res => res.text())
     .then(res => res.length > 2000 ? Promise.reject({ message: "error occurred." }) : res)
     .then(_ => {
-        console.log("connection established.")
+        logOutput("connection established.")
         timeOut = setInterval(_ => {
-            fetch(refreshURL).then(console.log("connection re-established."))
+            fetch(refreshURL).then(_=>logOutput("connection re-established."))
                 .catch(err => {
                     clearInterval(timeOut)
-                    console.log("could not refresh :", err.message)
+                    logError("could not refresh, " +  err.message)
                 })
         }, timeout * 1000)
     })
-    .catch(err => console.log(err.message))
+    .catch(err => logError(err.message))
 
+function logOutput(msg){
+    console.log(`${pid}#${new Date()}:output => ${msg}`)
+}
+
+function logError(msg){
+    console.log(`${pid}#${new Date()}:error => ${msg}`)
+}
